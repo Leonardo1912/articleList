@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {useTypedSelector} from "../../hooks/useTypeSelector";
-import {fetchArticle} from "../../store/action-creators/article";
 import {useActions} from "../../hooks/useActions";
 import "./ArticleList.scss"
 import InputBase from '@mui/material/InputBase';
@@ -8,31 +7,16 @@ import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
-const Highlighter = (props: any) => {
-    const {filter, text} = props
-    if (!filter) return text
-    const regexp = new RegExp(filter, 'ig')
-    const matchValue = text.match(regexp)
-    if (matchValue) {
-        return text.split(regexp).map((s: string, index: number, array: []) => {
-            if (index < array.length - 1) {
-                const same = matchValue.shift()
-                return <>{s}<span className="highlighter">{same}</span></>
-            }
-            return s
-        })
-    }
-    return text
-}
+import Highlighter from "../Highlighter/Highlighter"
+import {Link} from "react-router-dom";
 
 const ArticleList: React.FC = () => {
     const moment = require('moment');
     const {articles, loading, error} = useTypedSelector(state => state.article)
-    const {fetchArticle} = useActions()
+    const {fetchArticles} = useActions()
     const [search, setSearch] = useState('')
     useEffect(() => {
-        fetchArticle(search)
+        fetchArticles(search)
     }, [search])
     /*if (loading) {
         return <div>LOADING...</div>
@@ -72,14 +56,14 @@ const ArticleList: React.FC = () => {
                             <div className="content-article">
                                 <div className="data-article">
                                     <div className="title-article">
-                                        <Highlighter filter={search} text={article.title}/>
+                                        <Highlighter filter = {search} text={article.title} />
                                     </div>
                                     <div className="description-article">
                                         <Highlighter filter={search} text={article.summary.substring(0, 100)}/>...
                                     </div>
                                 </div>
-                                <div className="read-more"><span className="text">Read more</span><ArrowForwardIcon
-                                    sx={{fontSize: "12px",}}/></div>
+                                <Link to={`/article/${article.id}`} className="read-more"><span className="text">Read more</span><ArrowForwardIcon
+                                    sx={{fontSize: "12px",}}/></Link>
                             </div>
                         </div>
                     </div>)}
