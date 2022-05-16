@@ -11,7 +11,6 @@ const Article = () => {
     const {article, loading, error} = useTypedSelector(state => state.article)
     const {fetchArticle} = useActions()
     const {id}: any = useParams()
-    console.log(article)
 
     useEffect(() => {
         fetchArticle(id)

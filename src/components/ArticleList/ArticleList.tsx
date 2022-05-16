@@ -12,15 +12,12 @@ import {Link} from "react-router-dom";
 
 const ArticleList: React.FC = () => {
     const moment = require('moment');
-    const {articles, loading, error} = useTypedSelector(state => state.article)
+    const {articles, error} = useTypedSelector(state => state.article)
     const {fetchArticles} = useActions()
     const [search, setSearch] = useState('')
     useEffect(() => {
         fetchArticles(search)
     }, [search])
-    /*if (loading) {
-        return <div>LOADING...</div>
-    }*/
     if (error) {
         return <div>{error}</div>
     }

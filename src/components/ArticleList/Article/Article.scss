@@ -30,6 +30,24 @@
     }
 
   }
+  @media (max-width: 800px){
+    .content{
+      margin: 0 35px;
+      padding: 15px 35px;
+    }
+  }
+  @media (max-width: 500px){
+    .content{
+      margin: 0 15px;
+      padding: 15px;
+      .title{
+        font-size: 20px;
+      }
+      .description{
+        font-size: 15px;
+      }
+    }
+  }
 
   .back {
     margin-left:  150px;
@@ -42,5 +60,15 @@
   a{
     color: #363636;
     text-decoration: none;
+  }
+  @media (max-width: 800px){
+    .back{
+      margin-left: 70px;
+    }
+  }
+  @media (max-width: 600px){
+    .back{
+      margin-left: 30px;
+    }
   }
 }
