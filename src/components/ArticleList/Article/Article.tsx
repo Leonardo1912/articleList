@@ -69,7 +69,7 @@ const Article = () => {
                     proin nulla.
                 </div>
             </div>
-            <Link to="/" className="back"><ArrowBackIcon sx={{fontSize: "12px"}}/>
+            <Link to="/articleList" className="back"><ArrowBackIcon sx={{fontSize: "12px"}}/>
                 <span className="back-text">Back to homepage</span>
             </Link>
         </div>

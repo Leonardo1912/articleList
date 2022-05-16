@@ -62,7 +62,7 @@ const ArticleList: React.FC = () => {
                                         <Highlighter filter={search} text={article.summary.substring(0, 100)}/>...
                                     </div>
                                 </div>
-                                <Link to={`/article/${article.id}`} className="read-more">
+                                <Link to={`/articleList/article/${article.id}`} className="read-more">
                                     <span className="text">Read more</span>
                                     <ArrowForwardIcon
                                     sx={{fontSize: "12px",}}/>
