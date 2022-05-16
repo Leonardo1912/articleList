@@ -44,7 +44,7 @@ const ArticleList: React.FC = () => {
                 </div>
             </div>
             <div className="content">
-                <div className="result">Result:</div>
+                <div className="result">Result: {articles.length}</div>
                 <div className="articles">
                     {articles.map(article => <div key={article.id} className="article">
                         <div className="photo" style={{backgroundImage: `url(${article.imageUrl})`}}></div>
@@ -56,14 +56,17 @@ const ArticleList: React.FC = () => {
                             <div className="content-article">
                                 <div className="data-article">
                                     <div className="title-article">
-                                        <Highlighter filter = {search} text={article.title} />
+                                        <Highlighter filter={search} text={article.title}/>
                                     </div>
                                     <div className="description-article">
                                         <Highlighter filter={search} text={article.summary.substring(0, 100)}/>...
                                     </div>
                                 </div>
-                                <Link to={`/article/${article.id}`} className="read-more"><span className="text">Read more</span><ArrowForwardIcon
-                                    sx={{fontSize: "12px",}}/></Link>
+                                <Link to={`/article/${article.id}`} className="read-more">
+                                    <span className="text">Read more</span>
+                                    <ArrowForwardIcon
+                                    sx={{fontSize: "12px",}}/>
+                                </Link>
                             </div>
                         </div>
                     </div>)}
