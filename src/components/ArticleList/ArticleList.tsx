@@ -9,14 +9,16 @@ import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Highlighter from "../Highlighter/Highlighter"
 import {Link} from "react-router-dom";
+import useDebounce from "../../hooks/useDebounce";
 
 const ArticleList: React.FC = () => {
     const moment = require('moment');
     const {articles, error} = useTypedSelector(state => state.article)
     const {fetchArticles} = useActions()
     const [search, setSearch] = useState('')
+    const debouncedSearch = useDebounce(fetchArticles, 1000)
     useEffect(() => {
-        fetchArticles(search)
+        debouncedSearch(search)
     }, [search])
     if (error) {
         return <div>{error}</div>
